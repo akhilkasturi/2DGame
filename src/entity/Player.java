@@ -15,7 +15,7 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
-    int hasKey = 0;
+    public int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
 
@@ -47,14 +47,14 @@ public class Player extends Entity{
 
         try{
 
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/SpongeBot.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/Squidward.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/SpongeBot.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/Squidward.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/SpongeBot.png"));
-            left2= ImageIO.read(getClass().getResourceAsStream("/player/Squidward.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/SpongeBot.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/Squidward.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
+            left2= ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
 
 
         }catch (IOException e){
@@ -114,14 +114,30 @@ public class Player extends Entity{
 
             switch(objectName){
                 case "Key":
+                    gp.playSE(0);
                     hasKey++;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("you got a key");
                     break;
                 case "Door":
                     if (hasKey > 0){
+                        gp.playSE(3);
                         gp.obj[i] = null;
                         hasKey--;
+                        gp.ui.showMessage("you opened a door");
                     }
+                    else{
+                        gp.ui.showMessage("you need a key");
+                    }
+                    break;
+                case "Boots":
+                    gp.playSE(2);
+                    speed+=2;
+                    gp.obj[i] = null;
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
+                    gp.playSE(1);
                     break;
             }
         }
