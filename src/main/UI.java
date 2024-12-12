@@ -22,7 +22,7 @@ public class UI {
     public UI(GamePanel gp){
         this.gp = gp;
         helvetica_40 = new Font("Helvetica", Font.PLAIN,40);
-        OBJ_Key key = new OBJ_Key();
+        OBJ_Key key = new OBJ_Key(gp);
         keyImage = key.image;
     }
     public void showMessage(String text){
