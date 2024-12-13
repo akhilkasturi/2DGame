@@ -5,7 +5,6 @@ import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,12 +24,20 @@ public class TileManager {
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("/maps/pyramidtop.txt");
+        loadMap("/maps/level2.txt");
     }
     public void getTileImage(){
 
         setup(0,"black",true);
         setup(1,"floor",false);
+        setup(2,"wall",true);
+        setup(3,"floor3",false);
+        setup(4,"floor4",false);
+        setup(5,"floor5",false);
+        setup(6,"row-1-column-1",false);
+        setup(7,"row-1-column-2",false);
+        setup(8,"row-1-column-3",false);
+
 
     }
     public void setup(int index, String imageName, boolean collision){
